@@ -9,16 +9,13 @@
 
 <body>
 
-  <h1>Velvet Market</h1> <!--Grocery store name.-->
-
-  <!--Create a slide element to change font size. Includes font sizes 15 to 25.-->
-  <label for="sizeSlider">Text size</label>
-  <input type="range" min="15" max="25" value="16" id="sizeSlider">
-  <span id="fontSizeValue">16px</span>
+  <div class="topheader">
+    <h1>Velvet Market 🍰</h1> <!--Grocery store name.-->
+  </div>
 
   <!--Tab links. When clicked on, show a new page of the store to the user.-->
   <div class="tab">
-    <button class="tablinks" onclick="openInfo(event, 'Client')">Client</button>
+    <button class="tablinks" onclick="openInfo(event, 'Client')">Your Account</button>
     <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
     <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
   </div>
@@ -27,7 +24,8 @@
 
   <!--Tab for the client to select their shopping preferences.-->
   <div id="Client" class="tabcontent">
-    <h3>Your Shopping Experience</h3>
+    <h3>Your Account Details</h3>
+    <p>Review or modify your personal account details here. Adjust settings for product prefernces and restrictions.</p>
     <p>Select a grocery preference/restriction to filter your product options.</p>
     <p>Select "All" to view all store products.</p>
     Choose a one or many categories:
@@ -46,29 +44,27 @@
       </label>
       <label>
         <input type="checkbox" value="Organic"
-        onchange="populateListProductChoices('dietSelect', 'displayProduct')">Organic
+          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Organic
       </label>
       <label>
         <input type="checkbox" value="DiabeticFriendly"
-        onchange="populateListProductChoices('dietSelect', 'displayProduct')">Diabetic Friendly
+          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Diabetic Friendly
       </label>
       <label>
         <input type="checkbox" value="LactoseFree"
-        onchange="populateListProductChoices('dietSelect', 'displayProduct')">Lactose Free
+          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Lactose Free
       </label>
       <label>
         <input type="checkbox" value="All" onchange="populateListProductChoices('dietSelect', 'displayProduct')">All
       </label>
     </div>
 
-    <!-- Original code for category selection. Checkboxes were added to fulfill the requirement of users being able to choose more than one category at once. Dropdown menu cannot support that.
-    <select id="dietSelect" name="dietSelect" onchange="populateListProductChoices(this.id, 'displayProduct')">
-      <option value=""></option>
-      <option value="Vegetarian">Vegetarian</option>
-      <option value="GlutenFree">GlutenFree</option>
-      <option value="All">All</option>
-    </select>
-    -->
+    <br>
+
+    <!--Create a slide element to change font size. Includes font sizes 15 to 25.-->
+    <label for="sizeSlider">Text Size</label>
+    <input type="range" min="15" max="25" value="16" id="sizeSlider">
+    <span id="fontSizeValue">16px</span>
   </div>
 
   <!--Tab for the client to add products to card. Filtered by shopping preferences.-->
@@ -91,8 +87,10 @@
     <div id="displayCart"></div>
   </div>
 
-  <!--Group members' signatures.-->
-  <p id="signature">Site created by David Chen, YiYau Wong, and Zilin Liu</p>
+  <div class="bottomheader">
+    <!--Group members' signatures.-->
+    <p id="signature">Site created by David Chen, YiYau Wong, and Zilin Liu</p>
+  </div>
 
   <!--Connect the HTML file to the JavaScript files.-->
   <script src="scripts/groceries.js"></script>

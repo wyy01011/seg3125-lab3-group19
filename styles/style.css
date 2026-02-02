@@ -1,24 +1,55 @@
 /*Basic Styling for the sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp>.*/
 
 /*Styling for the basic HTML page.*/
-html{
-    padding-left: 20px;
-    padding-right: 20px;
+html {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/*Styling for the top header class.*/
+.topheader {
+  background-color: #f05757;
+  font-family: 'Londrina Sketch', cursive;
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+}
+
+/*Styling for the bottom header class.*/
+.bottomheader {
+  margin-top: 20px;
+  background-color: #d48319;
+  font-family: 'Londrina Sketch', cursive;
+  height: 70px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
+
+/*Styling for header 1.*/
+h1 {
+  color: white;
+  padding-top: 27px;
+  padding-left: 20px;
 }
 
 /*Styling for the website text and background color.*/
 body {
-    background-color: #ffc9f4;
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh; /*Minimum viewport height to keep the main screen visible upon loading*/
-    position: relative; 
-    padding-bottom: 50px;
+  background-color: #fff3f3;
+  font-family: 'Londrina Sketch', cursive;
+  min-height: 100vh;
+  /*Minimum viewport height to keep the main screen visible upon loading*/
+  position: relative;
+  padding-bottom: 50px;
 }
 
 /*Styling for the tab.*/
 .tab {
   overflow: hidden;
   background-color: #ff9696;
+  border-radius: 10px;
 }
 
 /*Styling for the tab content buttons.*/
@@ -47,11 +78,12 @@ body {
 .tabcontent {
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 2px solid #ebdfdf;
   border-top: none;
   background-color: #fff3f3;
   padding-bottom: 20px;
-  
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 /*Styling for the group member signatures.*/
