@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Style sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp.-->
+  <link href="styles/style.css" rel="stylesheet" type="text/css">
+  <title>Velvet Market</title>
+</head>
+
+<body>
+
+  <h1>Velvet Market</h1> <!--Grocery store name.-->
+
+  <!--Create a slide element to change font size. Includes font sizes 15 to 25.-->
+  <label for="sizeSlider">Text size</label>
+  <input type="range" min="15" max="25" value="16" id="sizeSlider">
+  <span id="fontSizeValue">16px</span>
+
+  <!--Tab links. When clicked on, show a new page of the store to the user.-->
+  <div class="tab">
+    <button class="tablinks" onclick="openInfo(event, 'Client')">Client</button>
+    <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
+    <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+  </div>
+
+  <!--Tab content.-->
+
+  <!--Tab for the client to select their shopping preferences.-->
+  <div id="Client" class="tabcontent">
+    <h3>Your Shopping Experience</h3>
+    <p>Select a grocery preference/restriction to filter your product options.</p>
+    <p>Select "All" to view all store products.</p>
+    Choose a one or many categories:
+
+    <!--Create checkboxes with product filters. Product list is updated whenever a filter changes.-->
+    <div id="dietSelect">
+      <!--All possible product filters.-->
+      <label>
+        <input type="checkbox" value="Vegetarian"
+          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Vegetarian
+        <!--When checked or unchecked, call populateListProductChoices function to update the products list display. The category checkboxes and product display HTML elements are used as parameters.-->
+      </label>
+      <label>
+        <input type="checkbox" value="GlutenFree"
+          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Gluten Free
+      </label>
+      <label>
+        <input type="checkbox" value="Organic"
+        onchange="populateListProductChoices('dietSelect', 'displayProduct')">Organic
+      </label>
+      <label>
+        <input type="checkbox" value="DiabeticFriendly"
+        onchange="populateListProductChoices('dietSelect', 'displayProduct')">Diabetic Friendly
+      </label>
+      <label>
+        <input type="checkbox" value="LactoseFree"
+        onchange="populateListProductChoices('dietSelect', 'displayProduct')">Lactose Free
+      </label>
+      <label>
+        <input type="checkbox" value="All" onchange="populateListProductChoices('dietSelect', 'displayProduct')">All
+      </label>
+    </div>
+
+    <!-- Original code for category selection. Checkboxes were added to fulfill the requirement of users being able to choose more than one category at once. Dropdown menu cannot support that.
+    <select id="dietSelect" name="dietSelect" onchange="populateListProductChoices(this.id, 'displayProduct')">
+      <option value=""></option>
+      <option value="Vegetarian">Vegetarian</option>
+      <option value="GlutenFree">GlutenFree</option>
+      <option value="All">All</option>
+    </select>
+    -->
+  </div>
+
+  <!--Tab for the client to add products to card. Filtered by shopping preferences.-->
+  <div id="Products" class="tabcontent">
+    <h3>Your targeted products</h3>
+    <p>We preselected products based on your restrictions/preferences.</p>
+    <p>If no products are listed, return to the "Client" tab to pick a restriction/preference for product types.</p>
+    Choose items to buy:
+    <div id="displayProduct"></div>
+    <button id="addCart" type="button" class="block" onclick="selectedItems()">
+      Add selected items to cart.
+    </button>
+  </div>
+
+  <!--Tab for the client to view their items in a cart and the total cost.-->
+  <div id="Cart" class="tabcontent">
+    <h3>Cart</h3>
+    <p>Your shopping cart items.</p>
+    <p>If no products are listed, return to the "Products" tab to add products to your cart.</p>
+    <div id="displayCart"></div>
+  </div>
+
+  <!--Group members' signatures.-->
+  <p id="signature">Site created by David Chen, YiYau Wong, and Zilin Liu</p>
+
+  <!--Connect the HTML file to the JavaScript files.-->
+  <script src="scripts/groceries.js"></script>
+  <script src="scripts/main.js"></script>
+
+</body>
+
+</html>

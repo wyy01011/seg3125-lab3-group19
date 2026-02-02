@@ -1,0 +1,72 @@
+/*Basic Styling for the sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp>.*/
+
+/*Styling for the basic HTML page.*/
+html{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*Styling for the website text and background color.*/
+body {
+    background-color: #ffc9f4;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh; /*Minimum viewport height to keep the main screen visible upon loading*/
+    position: relative; 
+    padding-bottom: 50px;
+}
+
+/*Styling for the tab.*/
+.tab {
+  overflow: hidden;
+  background-color: #ff9696;
+}
+
+/*Styling for the tab content buttons.*/
+.tab button {
+  font-weight: bold;
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/*Styling for background color of buttons on hover.*/
+.tab button:hover {
+  background-color: #fff3f3;
+}
+
+/*Styling for the tab button when it is active.*/
+.tab button.active {
+  background-color: #fff3f3;
+}
+
+/*Styling for the tab content.*/
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: #fff3f3;
+  padding-bottom: 20px;
+  
+}
+
+/*Styling for the group member signatures.*/
+#signature {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+
+/*Styling for displaying store products.*/
+#displayProduct {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 8px 20px;
+}
