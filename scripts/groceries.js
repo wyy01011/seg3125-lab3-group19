@@ -1,4 +1,4 @@
-//Array of grocery store products. All products include a name, one or many categories, the current amount added to cart, their price, and their image file name.
+//Array of grocery store products. All products include a name, one or many categories, the current amount added to cart, their price, their store category and their image file name.
 var products = [
 	{
 		name: "Lettuce",
@@ -8,6 +8,7 @@ var products = [
 		diabetic: true,
 		lactoseIntolerant: true,
 		price: 5.99,
+		storeCategory: "Produce",
 		imageName: "lettuce.jpg"
 	},
 	{
@@ -18,6 +19,7 @@ var products = [
 		diabetic: true,
 		lactoseIntolerant: true,
 		price: 4.99,
+		storeCategory: "Protein",
 		imageName: "eggs.jpg"
 	},
 	{
@@ -28,6 +30,7 @@ var products = [
 		diabetic: true,
 		lactoseIntolerant:true,
 		price: 19.99,
+		storeCategory: "Protein",
 		imageName: "salmon.jpg"
 	},
 	{
@@ -38,6 +41,7 @@ var products = [
 		diabetic: false,
 		lactoseIntolerant: false,
 		price: 20,
+		storeCategory: "Bakery",
 		imageName: "cheesecake.jpg"
 	},
 	{
@@ -48,6 +52,7 @@ var products = [
 		diabetic: true,
 		lactoseIntolerant: true,
 		price: 5.99,
+		storeCategory: "Produce",
 		imageName: "apple.jpg"
 	},
 	{
@@ -58,6 +63,7 @@ var products = [
 		diabetic: false,
 		lactoseIntolerant: false,
 		price: 3.99,
+		storeCategory: "Bakery",
 		imageName: "bread.jpg"
 	},
 	{
@@ -68,6 +74,7 @@ var products = [
 		diabetic: true,
 		lactoseIntolerant: true,
 		price: 3.49,
+		storeCategory: "Snacks",
 		imageName: "beans.jpg"
 	},
 	{
@@ -78,6 +85,7 @@ var products = [
 		diabetic: false,
 		lactoseIntolerant: false,
 		price: 7.99,
+		storeCategory: "Dairy",
 		imageName: "milk.jpg"
 	},
 	{
@@ -88,6 +96,7 @@ var products = [
 		diabetic: false,
 		lactoseIntolerant: false,
 		price: 9.99,
+		storeCategory: "Bakery",
 		imageName: "muffins.jpg"
 	},
 	{
@@ -98,6 +107,7 @@ var products = [
 		diabetic: false,
 		lactoseIntolerant:true,
 		price: 5,
+		storeCategory: "Snacks",
 		imageName: "chips.jpg"
 	},
 	{
@@ -108,6 +118,7 @@ var products = [
 		diabetic: true,
 		lactoseIntolerant: false,
 		price: 11.99,
+		storeCategory: "Dairy",
 		imageName: "creamcheese.jpg"
 	}
 

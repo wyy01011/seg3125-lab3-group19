@@ -61,14 +61,11 @@ function populateListProductChoices(slct1, slct2) {
 		var productPrice = optionArray[i].price; //Get the product's price.
 		var productImg = optionArray[i].imageName; //Get the product's image file name.
 
-		var item = document.createElement("span"); //Create an HTML element for the product to be displayed.
-		item.className = "product-item";
+		var item = document.createElement("card"); //Create an HTML card element for the product to be displayed with an image.
+		item.className = "card";
 
-		//Create the checkbox and add in HTML DOM. Checkbox code is commented out as the custom quantity feature is added.
-		//var checkbox = document.createElement("input");
-		//checkbox.type = "checkbox";
-		//checkbox.name = "product";
-		//checkbox.value = productName;
+		const container = document.createElement("div"); //Create an HTML container to hold the rest of the card contents.
+		container.className = "container";
 
 		//Create a number element to add in HTML DOM to update product quantities. Number input type learned from https://www.w3schools.com/tags/att_input_type_number.asp.
 		var numberCounter = document.createElement("input");
@@ -80,19 +77,28 @@ function populateListProductChoices(slct1, slct2) {
 		numberCounter.value = 0; //Product quantity starts at 0.
 
 		var label = document.createElement('label') //Create a label for the checkbox, and also add in HTML DOM.
-		var productLabel = productName + ": $" + productPrice //Create the text value for a product's caption.
+		var productLabel = productName + ": $" + productPrice + " "; //Create the text value for a product's caption.
 		var image = document.createElement("img"); //Create an image HTML element.
 		image.src = productImg //Set the source of the product image to the image's file name.
 		label.appendChild(document.createTextNode(productLabel)); //Product display now shows the product's caption of name and price.
 
-		item.appendChild(image); //Add the image to the product's display.
-		//item.appendChild(checkbox); //Add the checkbox to the product's display. Removed for the quantity update.
-		item.innerHTML += "<br>";
-		item.appendChild(numberCounter);
-		item.appendChild(label); //Add the caption to the product's display.
+		const button = document.createElement("button"); //Create a button element.
+		button.textContent = "🛒 Add to Cart";
+		button.onclick = function () {addSingleItem(this);}; //Assign a function to the specific add to cart button.
 
+		item.innerHTML += "<br>";
+		item.appendChild(image); //Add the image to the product's display.
+		container.appendChild(label); //Add the caption to the product's display.
+		container.appendChild(numberCounter);
+		container.appendChild(button);
+
+		item.appendChild(container);
 		s2.appendChild(item) //Add the product to the product display officially.
 	}
+}
+
+function addSingleItem(button) {
+
 }
 
 /**

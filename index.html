@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <!--Style sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp.-->
-  <link href="styles/style.css" rel="stylesheet" type="text/css">
+  <link href="styles/style.css" rel="stylesheet" type="text/css"> <!--Style sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp.-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Style sheet is taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_searchbar3.-->
   <title>Velvet Market</title>
 </head>
 
@@ -11,6 +11,11 @@
 
   <div class="topheader">
     <h1>Velvet Market 🍰</h1> <!--Grocery store name.-->
+    <form class="header-search"> <!--Form element to hold the search field and button.-->
+    <input type="text" placeholder="Search..." />
+    <button type="submit"><i class="fa fa-search"></i></button> <!--Create a button element using the class from W3Schools to load in the icon.-->
+  </form>
+
   </div>
 
   <!--Tab links. When clicked on, show a new page of the store to the user.-->
@@ -69,10 +74,10 @@
 
   <!--Tab for the client to add products to card. Filtered by shopping preferences.-->
   <div id="Products" class="tabcontent">
-    <h3>Your targeted products</h3>
-    <p>We preselected products based on your restrictions/preferences.</p>
-    <p>If no products are listed, return to the "Client" tab to pick a restriction/preference for product types.</p>
-    Choose items to buy:
+    <h3>Online Grocery</h3>
+    <p>We preselected products based on your restrictions/preferences.<br>
+      If no products are listed, return to your account to pick restrictions/preferences for product types.
+    </p>
     <div id="displayProduct"></div>
     <button id="addCart" type="button" class="block" onclick="selectedItems()">
       Add selected items to cart.
