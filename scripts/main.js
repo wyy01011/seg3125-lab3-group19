@@ -43,14 +43,21 @@ function populateListProductChoices(slct1, slct2) {
 	
 	//Checkbox HTML code learned from https://www.w3schools.com/tags/att_input_type_checkbox.asp tutorial website.
 
-	var checkedBoxes = s1.querySelectorAll("input[type=checkbox]:checked"); //Get all checkbox elements that were checked on and add it into an array.
-	var checked = [...checkedBoxes].map(checkbox => checkbox.value); //Get the value (name) of each checked box and add it into an array.
-	var optionArray = restrictListProducts(products, checked); //Pass the array with reduced products and all selected restrictions to update the display.
+	var radioSelected = s1.querySelectorAll("input[type=radio]:checked"); //Get all checkbox elements that were checked on and add it into an array.
+	var selectedRestrictions = [];
+	radioSelected.forEach(radio => {
+		if (radio.value === "Yes") {
+			selectedRestrictions.push(radio.name);
+		}
+	});
+	//var checked = [...checkedBoxes].map(checkbox => checkbox.value); //Get the value (name) of each checked box and add it into an array.
+	var optionArray = [];
+	if (selectedRestrictions.length === 0) { //If all the radio buttons are set to no restriction/preference, display all products.
+		optionArray = products;   
+	} else {
+		optionArray = restrictListProducts(products, selectedRestrictions); //Pass the array with reduced products and all selected restrictions to update the display.
+	}
 	displayProducts = optionArray;
-
-	// for each item in the array, create a checkbox element, each containing information such as:
-	// <input type="checkbox" name="product" value="Bread">
-	// <label for="Bread">Bread/label><br>
 
 	//Sort code learned from https://www.w3schools.com/js/js_array_sort.asp tutorial website.
 	optionArray.sort((a, b) => a.price - b.price); //Sort the product list by price. Sorted from low to high price.
@@ -75,6 +82,12 @@ function populateListProductChoices(slct1, slct2) {
 		numberCounter.min = 0; 
 		numberCounter.max = 99;
 		numberCounter.value = 0; //Product quantity starts at 0.
+		numberCounter.addEventListener("blur", function () { //Add an event listener to the number input. If a user enters a negative number manually, provide an error message.
+			if (this.value < 0) {
+				this.value = 0;
+				alert("Quantity cannot be negative.");
+			}
+		});
 
 		var label = document.createElement('label') //Create a label for the checkbox, and also add in HTML DOM.
 		var productLabel = productName + ": $" + productPrice + " "; //Create the text value for a product's caption.
@@ -141,3 +154,4 @@ slider.oninput = function () {
 	document.body.style.fontSize = this.value + "px";
 	size.textContent = this.value + "px";
 };
+

@@ -30,38 +30,52 @@
   <!--Tab for the client to select their shopping preferences.-->
   <div id="Client" class="tabcontent">
     <h3>Your Account Details</h3>
-    <p>Review or modify your personal account details here. Adjust settings for product prefernces and restrictions.</p>
-    <p>Select a grocery preference/restriction to filter your product options.</p>
-    <p>Select "All" to view all store products.</p>
-    Choose a one or many categories:
+    <p>Review or modify your personal account details here. Adjust settings for product preferences and restrictions.<br>
+      Select one or many grocery preferences/restrictions to filter your product options.<br>
+      Multiple preference/restriction selections will combine and show more products.
+    </p>
 
-    <!--Create checkboxes with product filters. Product list is updated whenever a filter changes.-->
-    <div id="dietSelect">
-      <!--All possible product filters.-->
-      <label>
-        <input type="checkbox" value="Vegetarian"
-          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Vegetarian
-        <!--When checked or unchecked, call populateListProductChoices function to update the products list display. The category checkboxes and product display HTML elements are used as parameters.-->
-      </label>
-      <label>
-        <input type="checkbox" value="GlutenFree"
-          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Gluten Free
-      </label>
-      <label>
-        <input type="checkbox" value="Organic"
-          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Organic
-      </label>
-      <label>
-        <input type="checkbox" value="DiabeticFriendly"
-          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Diabetic Friendly
-      </label>
-      <label>
-        <input type="checkbox" value="LactoseFree"
-          onchange="populateListProductChoices('dietSelect', 'displayProduct')">Lactose Free
-      </label>
-      <label>
-        <input type="checkbox" value="All" onchange="populateListProductChoices('dietSelect', 'displayProduct')">All
-      </label>
+    <!--Create radio buttons in cards with product filters. Product list is updated whenever a radio button selection changes.-->
+    <div id="accountCards" class = "accountCards">
+      <div class="card">
+        <div class="container">
+          <h4>Vegetarian Preferences</h4>
+          <label><input type="radio" name="Vegetarian" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are vegetarian friendly.</label><br>
+          <label><input type="radio" name="Vegetarian" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of vegetarian status.</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="container">
+          <h4><b>Gluten Restrictions</b></h4>
+          <label><input type="radio" name="GlutenFree" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that contain no gluten.</label><br>
+          <label><input type="radio" name="GlutenFree" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of gluten content.</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="container">
+          <h4><b>Organic Preferences</b></h4>
+          <label><input type="radio" name="Organic" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are organic.</label><br>
+          <label><input type="radio" name="Organic" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of their organic status.</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="container">
+          <h4><b>Diabetic Restrictions</b></h4>
+          <label><input type="radio" name="DiabeticFriendly" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are safe for diabetic conditions.</label><br>
+          <label><input type="radio" name="DiabeticFriendly" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of diabetic status.</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="container">
+          <h4><b>Lactose Restrictions</b></h4>
+          <label><input type="radio" name="LactoseFree" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that contain no lactose.</label><br>
+          <label><input type="radio" name="LactoseFree" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of lactose content.</label>
+        </div>
+      </div>
     </div>
 
     <br>
@@ -75,8 +89,8 @@
   <!--Tab for the client to add products to card. Filtered by shopping preferences.-->
   <div id="Products" class="tabcontent">
     <h3>Online Grocery</h3>
-    <p>We preselected products based on your restrictions/preferences.<br>
-      If no products are listed, return to your account to pick restrictions/preferences for product types.
+    <p>Products are displayed based on your restrictions/preferences.<br>
+      If no products are listed, return to your account to pick at least one restriction/preference for product types.
     </p>
     <div id="displayProduct"></div>
     <button id="addCart" type="button" class="block" onclick="selectedItems()">

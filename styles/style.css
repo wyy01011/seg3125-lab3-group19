@@ -114,7 +114,6 @@ body {
   background-color: #e49696;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 100%;
   box-sizing: border-box; 
   border-radius: 5px;
 }
@@ -203,4 +202,13 @@ img {
 
 .header-search button:hover {
   background-color: #ffe6e6;
+}
+
+.accountCards {
+  display: flex;
+  gap: 20px;    
+}
+
+.accountCards .card{
+  background-color: #ffaeae;
 }
