@@ -6,3 +6,4 @@ References:
 - CSS for box sizing and other card attributes retrieved from W3Schools: https://www.w3schools.com/css/css3_box-sizing.asp
 - CSS for button styling retrieved from W3Schools: https://www.w3schools.com/css/css3_buttons.asp
 - Search button code and CSS retrieved from W3Schools: https://www.w3schools.com/howto/howto_css_searchbar.asp
+- Event handling code retrieved from W3Schools: https://www.w3schools.com/jsreF/dom_obj_event.asp
