@@ -170,6 +170,7 @@ img {
   box-sizing: border-box;
 }
 
+/*Styling for the search bar element.*/
 .header-search {
   position: absolute;
   right: 50px;
@@ -179,7 +180,7 @@ img {
 }
 
 
-/* Search input */
+/*Styling for the search text input element in the header.*/
 .header-search input[type="text"] {
   padding: 8px 12px;
   font-size: 18px;
@@ -189,7 +190,7 @@ img {
   font-family: 'Londrina Sketch', cursive;
 }
 
-/* Search button */
+/*Styling for the search element's button.*/
 .header-search button {
   padding: 8px 12px;
   background-color: #fff;
@@ -200,15 +201,69 @@ img {
   font-weight: bold;
 }
 
+/*Styling for when the search button gets hovered.*/
 .header-search button:hover {
   background-color: #ffe6e6;
 }
 
+/*Styling for the cards in the account tab.*/
 .accountCards {
   display: flex;
   gap: 20px;    
 }
 
+/*Styling for the individual cards in the account tab.*/
 .accountCards .card{
   background-color: #ffaeae;
+}
+
+/*Styling here and below for the dropdown menu button and its list of options*/
+/*Inspiration for this part of code comes from https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_button*/
+.dropbtn {
+  background-color: #f05757;
+  color: white;
+  font-size: 16px;
+  font-family: 'Londrina Sketch', cursive;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 6px 10px;   
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 6px 10px; 
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #ff9696;
+}
+
+/*Styling for elements in the header of the products tab.*/
+.productsHeader {
+  display: flex;
+  align-items: center;   
+  gap: 20px; 
 }

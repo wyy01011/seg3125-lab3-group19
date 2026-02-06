@@ -2,8 +2,10 @@
 <html>
 
 <head>
-  <link href="styles/style.css" rel="stylesheet" type="text/css"> <!--Style sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp.-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Style sheet is taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_searchbar3.-->
+  <link href="styles/style.css" rel="stylesheet" type="text/css">
+  <!--Style sheet is taken from https://www.w3schools.com/howto/howto_js_tabs.asp.-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--Style sheet is taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_searchbar3.-->
   <title>Velvet Market</title>
 </head>
 
@@ -12,9 +14,10 @@
   <div class="topheader">
     <h1>Velvet Market 🍰</h1> <!--Grocery store name.-->
     <form class="header-search"> <!--Form element to hold the search field and button.-->
-    <input type="text" placeholder="Search..." />
-    <button type="submit"><i class="fa fa-search"></i></button> <!--Create a button element using the class from W3Schools to load in the icon.-->
-  </form>
+      <input type="text" placeholder="Search..." />
+      <button type="submit"><i class="fa fa-search"></i></button>
+      <!--Create a button element using the class from W3Schools to load in the icon.-->
+    </form>
 
   </div>
 
@@ -30,50 +33,71 @@
   <!--Tab for the client to select their shopping preferences.-->
   <div id="Client" class="tabcontent">
     <h3>Your Account Details</h3>
-    <p>Review or modify your personal account details here. Adjust settings for product preferences and restrictions.<br>
+    <p>Review or modify your personal account details here. Adjust settings for product preferences and
+      restrictions.<br>
       Select one or many grocery preferences/restrictions to filter your product options.<br>
       Multiple preference/restriction selections will combine and show more products.
     </p>
 
     <!--Create radio buttons in cards with product filters. Product list is updated whenever a radio button selection changes.-->
-    <div id="accountCards" class = "accountCards">
+    <div id="accountCards" class="accountCards">
       <div class="card">
         <div class="container">
           <h4>Vegetarian Preferences</h4>
-          <label><input type="radio" name="Vegetarian" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are vegetarian friendly.</label><br>
-          <label><input type="radio" name="Vegetarian" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of vegetarian status.</label>
+          <label><input type="radio" name="Vegetarian" value="Yes"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are
+            vegetarian friendly.</label><br>
+          <label><input type="radio" name="Vegetarian" value="No"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products
+            regardless of vegetarian status.</label>
         </div>
       </div>
 
       <div class="card">
         <div class="container">
           <h4><b>Gluten Restrictions</b></h4>
-          <label><input type="radio" name="GlutenFree" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that contain no gluten.</label><br>
-          <label><input type="radio" name="GlutenFree" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of gluten content.</label>
+          <label><input type="radio" name="GlutenFree" value="Yes"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that
+            contain no gluten.</label><br>
+          <label><input type="radio" name="GlutenFree" value="No"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products
+            regardless of gluten content.</label>
         </div>
       </div>
 
       <div class="card">
         <div class="container">
           <h4><b>Organic Preferences</b></h4>
-          <label><input type="radio" name="Organic" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are organic.</label><br>
-          <label><input type="radio" name="Organic" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of their organic status.</label>
+          <label><input type="radio" name="Organic" value="Yes"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are
+            organic.</label><br>
+          <label><input type="radio" name="Organic" value="No"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products
+            regardless of their organic status.</label>
         </div>
       </div>
 
       <div class="card">
         <div class="container">
           <h4><b>Diabetic Restrictions</b></h4>
-          <label><input type="radio" name="DiabeticFriendly" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are safe for diabetic conditions.</label><br>
-          <label><input type="radio" name="DiabeticFriendly" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of diabetic status.</label>
+          <label><input type="radio" name="DiabeticFriendly" value="Yes"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that are
+            safe for diabetic conditions.</label><br>
+          <label><input type="radio" name="DiabeticFriendly" value="No"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products
+            regardless of diabetic status.</label>
         </div>
       </div>
 
       <div class="card">
         <div class="container">
           <h4><b>Lactose Restrictions</b></h4>
-          <label><input type="radio" name="LactoseFree" value="Yes" onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that contain no lactose.</label><br>
-          <label><input type="radio" name="LactoseFree" value="No" onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products regardless of lactose content.</label>
+          <label><input type="radio" name="LactoseFree" value="Yes"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">Yes, show me all products that
+            contain no lactose.</label><br>
+          <label><input type="radio" name="LactoseFree" value="No"
+              onchange="populateListProductChoices('accountCards', 'displayProduct')">No, show me all products
+            regardless of lactose content.</label>
         </div>
       </div>
     </div>
@@ -88,14 +112,32 @@
 
   <!--Tab for the client to add products to card. Filtered by shopping preferences.-->
   <div id="Products" class="tabcontent">
+
+    <div class="productsHeader"> <!--Div to hold the dropdown button component.-->
+      <div class="dropdown">
+        <button class="dropbtn">Filter by Category</button> <!--Creates the dropdown button.-->
+        <div class="dropdown-content"> <!--Dropdown menu options.-->
+          <a href="#" onclick="productCategoryFilter('Produce')">Produce 🍎</a>
+          <a href="#" onclick="productCategoryFilter('Protein')">Protein 🥩</a>
+          <a href="#" onclick="productCategoryFilter('Bakery')">Bakery 🥐</a>
+          <a href="#" onclick="productCategoryFilter('Snacks')">Snacks 🍫</a>
+          <a href="#" onclick="productCategoryFilter('Dairy')">Dairy 🥛</a>
+          <a href="#" onclick="productCategoryFilter('All')">All 🛒</a>
+        </div>
+      </div>
+    </div>
     <h3>Online Grocery</h3>
-    <p>Products are displayed based on your restrictions/preferences.<br>
+    <p>
+      Products are displayed based on your restrictions/preferences.<br>
       If no products are listed, return to your account to pick at least one restriction/preference for product types.
     </p>
+
     <div id="displayProduct"></div>
+
     <button id="addCart" type="button" class="block" onclick="selectedItems()">
       Add selected items to cart.
     </button>
+
   </div>
 
   <!--Tab for the client to view their items in a cart and the total cost.-->

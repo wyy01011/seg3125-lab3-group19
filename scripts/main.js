@@ -115,6 +115,34 @@ function addSingleItem(button) {
 }
 
 /**
+ * Filters the current list of products by a further categorization based on type. (Produce, Protein, etc.)
+ *
+ * @param category The category to be displayed.
+ */
+function productCategoryFilter(category) {
+    const productCards = document.querySelectorAll("#displayProduct .card"); //Get all card HTML elements from the product display element.
+	var existingProducts = 0;
+    productCards.forEach(card => { //Loop through each card in the product display element.
+        const productName = card.querySelector("label").textContent.split(":")[0].trim(); //Extract the product name from the label.
+        const product = products.find(p => p.name === productName); //Search the products list and return the product object that matches the name of the current card element.
+
+        if (!product){ //If the product does not exist in the store, exit this function.
+			return;
+		} 
+
+        if (category === "All" || product.storeCategory === category) { //If the product's category was the one selected, or it is the 'All' category, keep it displayed.
+            card.style.display = "block";   
+			existingProducts++; //Add one to existingProducts variable.
+        } else { //Otherwise, set the display to be hidden.
+            card.style.display = "none";   
+        }
+    });
+	if (existingProducts === 0) { //If no products are displayed, alert the user.
+        alert("No products exist for this category.");
+    }
+}
+
+/**
  * Function called when add items to cart is clicked. Build an HTML paragraph to contain the list of selected items and total price.
  */
 function selectedItems() {
