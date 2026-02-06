@@ -7,3 +7,4 @@ References:
 - CSS for button styling retrieved from W3Schools: https://www.w3schools.com/css/css3_buttons.asp
 - Search button code and CSS retrieved from W3Schools: https://www.w3schools.com/howto/howto_css_searchbar.asp
 - Event handling code retrieved from W3Schools: https://www.w3schools.com/jsreF/dom_obj_event.asp
+- Dropdown menu code retrieved from W3Schools: https://www.w3schools.com/css/css_dropdowns.asp
