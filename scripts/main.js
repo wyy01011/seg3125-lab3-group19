@@ -27,7 +27,7 @@ function openInfo(evt, tabName) {
 }
 
 /**
- * Generates a checkbox list from a list of products. Every product is labelled with a name and price and includes an image.
+ * Generates card elements from a list of products. Every product is labelled with a name and price and includes an image.
  *
  * @param s1 The category selection HTML element.
  * @param s2 The product display HTML element.
@@ -110,6 +110,66 @@ function populateListProductChoices(slct1, slct2) {
 	}
 }
 
+/**
+ * Works like the above function but instead populates all products. Meant to be run one time upon window load.
+ *
+ * @param displayElement The product display HTML element.
+ */
+function populateAllProducts(displayElement) {
+
+    var s2 = document.getElementById(displayElement); 
+    s2.innerHTML = "";
+
+    var optionArray = [...products].sort((a, b) => a.price - b.price);
+
+    for (let i = 0; i < optionArray.length; i++) {
+
+        var productName = optionArray[i].name;
+        var productPrice = optionArray[i].price;
+        var productImg = optionArray[i].imageName;
+
+        var item = document.createElement("card");
+        item.className = "card";
+
+        var container = document.createElement("div");
+        container.className = "container";
+
+        var numberCounter = document.createElement("input");
+        numberCounter.type = "number";
+        numberCounter.name = "quantity";
+        numberCounter.min = 0;
+        numberCounter.max = 99;
+        numberCounter.value = 0;
+
+        numberCounter.addEventListener("blur", function () {
+            if (this.value < 0) {
+                this.value = 0;
+                alert("Quantity cannot be negative.");
+            }
+        });
+
+        var label = document.createElement("label");
+        var productLabel = productName + ": $" + productPrice + " ";
+        label.appendChild(document.createTextNode(productLabel));
+
+        var image = document.createElement("img");
+        image.src = productImg;
+
+        var button = document.createElement("button");
+        button.textContent = "🛒 Add to Cart";
+        button.onclick = function () { addSingleItem(this); };
+
+        item.innerHTML += "<br>";
+        item.appendChild(image);
+        container.appendChild(label);
+        container.appendChild(numberCounter);
+        container.appendChild(button);
+
+        item.appendChild(container);
+        s2.appendChild(item);
+    }
+}
+
 function addSingleItem(button) {
 
 }
@@ -182,4 +242,11 @@ slider.oninput = function () {
 	document.body.style.fontSize = this.value + "px";
 	size.textContent = this.value + "px";
 };
+
+//Functions to run after the HTML page is fully done loading.
+window.addEventListener("load", () => {
+    const accountButton = document.querySelector("button.tablinks[onclick*='Client']"); //Get the tab button that would normally open the account tab.
+    openInfo({ currentTarget: accountButton }, "Client"); //Call openInfo with the usual parameters except the button replaces the event parameter.
+	populateAllProducts("displayProduct"); //Loads all products into the products tab.
+});
 
