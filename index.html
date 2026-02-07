@@ -39,6 +39,11 @@
       Multiple preference/restriction selections will combine and show more products.
     </p>
 
+    <!--Ask user for their name-->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter name">
+    <button onclick="saveName()">Save</button>
+
     <!--Create radio buttons in cards with product filters. Product list is updated whenever a radio button selection changes.-->
     <div id="accountCards" class="accountCards">
       <div class="card">
@@ -127,6 +132,7 @@
       </div>
     </div>
     <h3>Online Grocery</h3>
+    <p>Hello, <span class="displayName"></span>!</p>
     <p>
       Products are displayed based on your restrictions/preferences.<br>
       If no products are listed, return to your account to pick at least one restriction/preference for product types.
@@ -143,6 +149,7 @@
   <!--Tab for the client to view their items in a cart and the total cost.-->
   <div id="Cart" class="tabcontent">
     <h3>Cart</h3>
+    <p>Thank you for shopping with us, <span class="displayName"></span>!</p>
     <p>Your shopping cart items.</p>
     <p>If no products are listed, return to the "Products" tab to add products to your cart.</p>
     <div id="displayCart"></div>

@@ -250,3 +250,20 @@ window.addEventListener("load", () => {
 	populateAllProducts("displayProduct"); //Loads all products into the products tab.
 });
 
+/**
+ * Function for displaying the user's name on the products and cart tab.
+ */
+
+let user_name;
+
+function saveName() {
+  user_name = document.getElementById("name").value;
+  
+  const output = document.getElementsByClassName("displayName");
+
+  // Change the text content of all elements with the class "displayName" to the user's name
+  for (let i = 0; i < output.length; i++) {
+    output[i].textContent = user_name;
+  }
+}
+

@@ -208,6 +208,7 @@ img {
 
 /*Styling for the cards in the account tab.*/
 .accountCards {
+  margin-top: 20px;
   display: flex;
   gap: 20px;    
 }
