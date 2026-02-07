@@ -105,8 +105,12 @@ body {
 /*Styling for displaying store products.*/
 #displayProduct {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /*Fit as many columns as possible in the row and share space*/
   gap: 8px 20px;
+}
+
+.product-card {
+  width: 100%;
 }
 
 /*Styling for the products as cards.*/
