@@ -273,3 +273,47 @@ label {
   display: block;
   margin-bottom: 1px;
 }
+
+/*Styling for the cart tab - especially the buttons*/
+.cart-list {
+  margin-top: 12px;
+}
+
+.cart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.cart-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn,
+.remove-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-subtotal {
+  text-align: right;
+}
+
+.cart-footer {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+

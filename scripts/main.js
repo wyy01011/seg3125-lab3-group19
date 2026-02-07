@@ -197,32 +197,95 @@ function addToCart(productName, qty) {
   renderCart();
 }
 
+function setCartQty(productName, newQty) {
+  if (newQty <= 0) {
+    delete cart[productName]; // auto-remove when 0
+  } else {
+    cart[productName] = newQty;
+  }
+  renderCart();
+}
+
+function changeCartQty(productName, newValue) {
+  const current = cart[productName] || 0;
+  setCartQty(productName, current + newValue);
+}
+
 // Display product list in cart
 function renderCart() {
   const c = document.getElementById("displayCart");
   c.innerHTML = "";
 
-  const para = document.createElement("p");
-  para.innerHTML = "You selected:<br>";
+  const names = Object.keys(cart);
+
+  if (names.length === 0) {
+    c.innerHTML = "<p>Your cart is empty 🛒</p>";
+    return;
+  }
+
+  const list = document.createElement("div");
+  list.className = "cart-list";
 
   let total = 0;
 
-  for (const name in cart) {
+  // Iterate through each product in the cart and display its name, price, quantity, and subtotal. Also add buttons to change quantity and remove items.
+  names.forEach((name) => {
     const qty = cart[name];
 
-    // look up price from products list
-	// if there is none, price equals to 0 (should not happen)
     const productObj = products.find(p => p.name === name);
-    const price = productObj ? productObj.price : 0;
+    const price = productObj ? Number(productObj.price) : 0; // just in case not found
+    const lineTotal = price * qty;
+    total += lineTotal;
 
-    total += price * qty;
+    const row = document.createElement("div");
+    row.className = "cart-row";
 
-    para.innerHTML += `${name} Qty: ${qty}<br>`;
-  }
+	// Display product information and buttons
+    row.innerHTML = `
+      <div class="cart-info">
+        <div class="cart-name">${name}</div>
+        <div class="cart-price">$${price.toFixed(2)} each</div>
+      </div>
 
-  c.appendChild(para);
-  c.appendChild(document.createTextNode("Total Price is $" + total.toFixed(2)));
+      <div class="cart-controls">
+        <button class="qty-btn" data-action="sub" data-name="${name}">−</button>
+        <span class="cart-qty">${qty}</span>
+        <button class="qty-btn" data-action="add" data-name="${name}">+</button>
+        <button class="remove-btn" data-action="remove" data-name="${name}">Remove</button>
+      </div>
+
+      <div class="cart-subtotal">$${lineTotal.toFixed(2)}</div>
+    `;
+
+    list.appendChild(row);
+  });
+
+  c.appendChild(list);
+
+  const ending = document.createElement("div");
+  ending.className = "cart-footer";
+  ending.innerHTML = `
+    <div class="cart-total-label">Total</div>
+    <div class="cart-total">$${total.toFixed(2)}</div>
+  `;
+  c.appendChild(ending);
 }
+
+// Listen for clicks on the cart buttons to change quantities or remove items
+// Learnt from https://www.w3schools.com/tags/att_global_data.asp
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+  const name = btn.dataset.name;
+  if (!action || !name) return; // not cart buttons
+
+  if (action === "add") {changeCartQty(name, +1);}
+  if (action === "sub") {changeCartQty(name, -1);}
+  if (action === "remove") {setCartQty(name, 0);}
+});
+
 
 
 /**
@@ -251,37 +314,6 @@ function productCategoryFilter(category) {
 	if (existingProducts === 0) { //If no products are displayed, alert the user.
         alert("No products exist for this category.");
     }
-}
-
-/**
- * Function called when add items to cart is clicked. Build an HTML paragraph to contain the list of selected items and total price.
- */
-function selectedItems() {
-
-	var ele = document.getElementsByName("quantity");
-	var chosenProducts = []; //List to hold the names of each product.
-	var productQuantities = []; //List to hold the quantities of each product.
-
-	var c = document.getElementById('displayCart');
-	c.innerHTML = "";
-
-	//Build a list of the selected product.
-	var para = document.createElement("P");
-	para.innerHTML = "You selected : ";
-	para.appendChild(document.createElement("br"));
-	for (i = 0; i < ele.length; i++) {
-		if (Number(ele[i].value) > 0) {
-			para.appendChild(document.createTextNode(displayProducts[i].name + ". Qty: " + Number(ele[i].value))); //Show the item in the cart with the quantity added.
-			para.appendChild(document.createElement("br"));
-			chosenProducts[i] = (displayProducts[i].name); //Add the product's name to the list.
-			productQuantities[i] = Number(ele[i].value); //Add the product's quantity to the list.
-		}
-	}
-
-	//Add the paragraph and it's total price.
-	c.appendChild(para);
-	c.appendChild(document.createTextNode("Total Price is " + getTotalPrice(chosenProducts, productQuantities)));
-
 }
 
 //Variables for the slide and size values.
