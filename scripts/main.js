@@ -1,4 +1,5 @@
 var displayProducts = []; //Variable to hold product names being displayed.
+const cart = {}; // productName -> qty
 
 /**
  * Call this function when any tab is clicked. Hides the past active tab and reveals the new active one. Adapted from https://www.w3schools.com/howto/howto_js_tabs.asp.
@@ -97,6 +98,7 @@ function populateListProductChoices(slct1, slct2) {
 
 		const button = document.createElement("button"); //Create a button element.
 		button.textContent = "🛒 Add to Cart";
+		button.dataset.index = i; //Add a data attribute to the button to store the index of the product it corresponds to in the displayProducts array.
 		button.onclick = function () {addSingleItem(this);}; //Assign a function to the specific add to cart button.
 
 		item.innerHTML += "<br>";
@@ -121,6 +123,7 @@ function populateAllProducts(displayElement) {
     s2.innerHTML = "";
 
     var optionArray = [...products].sort((a, b) => a.price - b.price);
+	displayProducts = optionArray;
 
     for (let i = 0; i < optionArray.length; i++) {
 
@@ -157,6 +160,7 @@ function populateAllProducts(displayElement) {
 
         var button = document.createElement("button");
         button.textContent = "🛒 Add to Cart";
+		button.dataset.index = i; //Add a data attribute to the button to store the index of the product it corresponds to in the displayProducts array.
         button.onclick = function () { addSingleItem(this); };
 
         item.innerHTML += "<br>";
@@ -170,9 +174,56 @@ function populateAllProducts(displayElement) {
     }
 }
 
+// Add one single new product to cart
 function addSingleItem(button) {
+  const idx = Number(button.dataset.index); // which product
+  const card = button.closest(".card"); // the card it belongs to
+  const qtyInput = card.querySelector('input[name="quantity"]');
+  const qty = Number(qtyInput.value);
 
+  if (qty <= 0) {
+    alert("Please enter a quantity > 0.");
+    return;
+  }
+
+  const product = displayProducts[idx];
+
+  addToCart(product.name, qty);
 }
+
+// Populate cart[] with the selected products and quantities
+function addToCart(productName, qty) {
+  cart[productName] = (cart[productName] || 0) + qty;
+  renderCart();
+}
+
+// Display product list in cart
+function renderCart() {
+  const c = document.getElementById("displayCart");
+  c.innerHTML = "";
+
+  const para = document.createElement("p");
+  para.innerHTML = "You selected:<br>";
+
+  let total = 0;
+
+  for (const name in cart) {
+    const qty = cart[name];
+
+    // look up price from products list
+	// if there is none, price equals to 0 (should not happen)
+    const productObj = products.find(p => p.name === name);
+    const price = productObj ? productObj.price : 0;
+
+    total += price * qty;
+
+    para.innerHTML += `${name} Qty: ${qty}<br>`;
+  }
+
+  c.appendChild(para);
+  c.appendChild(document.createTextNode("Total Price is $" + total.toFixed(2)));
+}
+
 
 /**
  * Filters the current list of products by a further categorization based on type. (Produce, Protein, etc.)
