@@ -130,7 +130,7 @@ img {
 
 /*Styling for the container class.*/
 .container {
-  padding: 2px 16px;
+  padding: 20px 16px;
   width: 100%;
   box-sizing: border-box; 
 }
@@ -267,4 +267,9 @@ img {
   display: flex;
   align-items: center;   
   gap: 20px; 
+}
+
+label {
+  display: block;
+  margin-bottom: 1px;
 }
