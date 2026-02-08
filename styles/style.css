@@ -321,3 +321,14 @@ label {
   justify-content: space-between;
 }
 
+.feedback {
+  margin: 12px auto;
+  width: fit-content;
+  max-width: 90%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff;
+  border:2px solid #ebdfdf;
+  display: none;
+}
+

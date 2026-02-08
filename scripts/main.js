@@ -1,6 +1,21 @@
 var displayProducts = []; //Variable to hold product names being displayed.
 const cart = {}; // productName -> qty
 
+// show feedback message
+function showMessage(msg){
+  const box = document.getElementsById("feedback");
+  if(!box) return;
+
+  box.textContent = msg;
+  box.style.display = "block";
+
+  clearTimeout(showMessage._t);
+  showMessage._t = setTimeout(() =>{
+    box.style.display = "none";
+  }, 2000);
+}
+
+
 /**
  * Call this function when any tab is clicked. Hides the past active tab and reveals the new active one. Adapted from https://www.w3schools.com/howto/howto_js_tabs.asp.
  *
@@ -25,6 +40,14 @@ function openInfo(evt, tabName) {
 	document.getElementById(tabName).style.display = "block";
 	evt.currentTarget.className += " active";
 
+}
+
+function openTabFromDropdown(tabName) {
+  const fakeEvt = {
+    currentTarget: document.getElementById("navDropBtn")
+  };
+
+  openInfo(fakeEvt, tabName);
 }
 
 /**
@@ -195,15 +218,20 @@ function addSingleItem(button) {
 function addToCart(productName, qty) {
   cart[productName] = (cart[productName] || 0) + qty;
   renderCart();
+  showMessage('Added ${qty} ${productName}(s) to cart.');
 }
 
 function setCartQty(productName, newQty) {
   if (newQty <= 0) {
     delete cart[productName]; // auto-remove when 0
-  } else {
-    cart[productName] = newQty;
+    renderCart();
+    showMessage('Removed ${productName} from cart.');
+    return;
   }
+
+  cart[productName] = newQty;
   renderCart();
+  showMessage('Updated ${productName} quantity to ${newQty}.');
 }
 
 function changeCartQty(productName, newValue) {

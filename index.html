@@ -22,11 +22,16 @@
   </div>
 
   <!--Tab links. When clicked on, show a new page of the store to the user.-->
-  <div class="tab">
-    <button class="tablinks" onclick="openInfo(event, 'Client')">Your Account</button>
-    <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
-    <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+  <div class="dropdown">
+    <button class="dropbtn" id="navDropBtn">Navigate</button>
+    <div class="dropdown-content">
+      <a href="#" onclick="openTabFromDropdown('Client'); return flase;">Account</a>
+      <a href="#" onclick="openTabFromDropdown('Products'); return flase;">Products</a>
+      <a href="#" onclick="openTabFromDropdown('Cart'); return flase;">Cart</a>
+    </div>
   </div>
+
+  <div id="feedback" class="feedback" aria-live="polite"></div>
 
   <!--Tab content.-->
 
