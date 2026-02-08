@@ -13,10 +13,10 @@ html {
   height: 100px;
   border-radius: 10px;
   display: flex;
-  justify-content: center;   /* center content horizontally */
-  align-items: center;       /* center vertically */
+  justify-content: center;  
+  align-items: center;      
   padding: 0 20px;
-  position: relative;        /* allows absolute positioning inside */
+  position: relative;       
 }
 
 /*Styling for the bottom header class.*/
@@ -269,6 +269,7 @@ img {
 /*Styling for elements in the header of the products tab.*/
 .productsHeader {
   display: flex;
+  justify-content: flex-end;
   align-items: center;   
   gap: 20px; 
 }
@@ -330,5 +331,10 @@ label {
   background: #fff;
   border:2px solid #ebdfdf;
   display: none;
+}
+
+/*Styling for just the navigation dropdown menu button.*/
+#navDropBtn {
+  background-color: #aa2626;
 }
 

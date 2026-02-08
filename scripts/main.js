@@ -2,15 +2,15 @@ var displayProducts = []; //Variable to hold product names being displayed.
 const cart = {}; // productName -> qty
 
 // show feedback message
-function showMessage(msg){
+function showMessage(msg) {
   const box = document.getElementsById("feedback");
-  if(!box) return;
+  if (!box) return;
 
   box.textContent = msg;
   box.style.display = "block";
 
   clearTimeout(showMessage._t);
-  showMessage._t = setTimeout(() =>{
+  showMessage._t = setTimeout(() => {
     box.style.display = "none";
   }, 2000);
 }
@@ -24,21 +24,21 @@ function showMessage(msg){
  */
 function openInfo(evt, tabName) {
 
-	//Get all elements with class="tabcontent" and hide them.
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
+  //Get all elements with class="tabcontent" and hide them.
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
-	//Get all elements with class="tablinks" and remove the class "active".
-	tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" active", "");
-	}
+  //Get all elements with class="tablinks" and remove the class "active".
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
 
-	//Show the current tab, and add an "active" class to the button that opened the tab.
-	document.getElementById(tabName).style.display = "block";
-	evt.currentTarget.className += " active";
+  //Show the current tab, and add an "active" class to the button that opened the tab.
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active"; //Line 41
 
 }
 
@@ -57,82 +57,82 @@ function openTabFromDropdown(tabName) {
  * @param s2 The product display HTML element.
  */
 function populateListProductChoices(slct1, slct2) {
-	var s1 = document.getElementById(slct1); //Variable to hold the checkbox element.
-	var s2 = document.getElementById(slct2); //Variable to hold the display element.
+  var s1 = document.getElementById(slct1); //Variable to hold the checkbox element.
+  var s2 = document.getElementById(slct2); //Variable to hold the display element.
 
-	//s2 represents the <div> in the Products tab, which shows the product list. Set it as empty first.
-	s2.innerHTML = "";
+  //s2 represents the <div> in the Products tab, which shows the product list. Set it as empty first.
+  s2.innerHTML = "";
 
-	//var optionArray = restrictListProducts(products, s1.value); Original code for options array. A new one is made below to account for the new checkbox element being used for category selection.
-	
-	//Checkbox HTML code learned from https://www.w3schools.com/tags/att_input_type_checkbox.asp tutorial website.
+  //var optionArray = restrictListProducts(products, s1.value); Original code for options array. A new one is made below to account for the new checkbox element being used for category selection.
 
-	var radioSelected = s1.querySelectorAll("input[type=radio]:checked"); //Get all checkbox elements that were checked on and add it into an array.
-	var selectedRestrictions = [];
-	radioSelected.forEach(radio => {
-		if (radio.value === "Yes") {
-			selectedRestrictions.push(radio.name);
-		}
-	});
-	//var checked = [...checkedBoxes].map(checkbox => checkbox.value); //Get the value (name) of each checked box and add it into an array.
-	var optionArray = [];
-	if (selectedRestrictions.length === 0) { //If all the radio buttons are set to no restriction/preference, display all products.
-		optionArray = products;   
-	} else {
-		optionArray = restrictListProducts(products, selectedRestrictions); //Pass the array with reduced products and all selected restrictions to update the display.
-	}
-	displayProducts = optionArray;
+  //Checkbox HTML code learned from https://www.w3schools.com/tags/att_input_type_checkbox.asp tutorial website.
 
-	//Sort code learned from https://www.w3schools.com/js/js_array_sort.asp tutorial website.
-	optionArray.sort((a, b) => a.price - b.price); //Sort the product list by price. Sorted from low to high price.
+  var radioSelected = s1.querySelectorAll("input[type=radio]:checked"); //Get all checkbox elements that were checked on and add it into an array.
+  var selectedRestrictions = [];
+  radioSelected.forEach(radio => {
+    if (radio.value === "Yes") {
+      selectedRestrictions.push(radio.name);
+    }
+  });
+  //var checked = [...checkedBoxes].map(checkbox => checkbox.value); //Get the value (name) of each checked box and add it into an array.
+  var optionArray = [];
+  if (selectedRestrictions.length === 0) { //If all the radio buttons are set to no restriction/preference, display all products.
+    optionArray = products;
+  } else {
+    optionArray = restrictListProducts(products, selectedRestrictions); //Pass the array with reduced products and all selected restrictions to update the display.
+  }
+  displayProducts = optionArray;
 
-	for (i = 0; i < optionArray.length; i++) { //For each product to display, create a checkbox element for it to display on the products tab.
+  //Sort code learned from https://www.w3schools.com/js/js_array_sort.asp tutorial website.
+  optionArray.sort((a, b) => a.price - b.price); //Sort the product list by price. Sorted from low to high price.
 
-		var productName = optionArray[i].name; //Get the product's name.
-		var productPrice = optionArray[i].price; //Get the product's price.
-		var productImg = optionArray[i].imageName; //Get the product's image file name.
+  for (i = 0; i < optionArray.length; i++) { //For each product to display, create a checkbox element for it to display on the products tab.
 
-		var item = document.createElement("card"); //Create an HTML card element for the product to be displayed with an image.
-		item.className = "card";
+    var productName = optionArray[i].name; //Get the product's name.
+    var productPrice = optionArray[i].price; //Get the product's price.
+    var productImg = optionArray[i].imageName; //Get the product's image file name.
 
-		const container = document.createElement("div"); //Create an HTML container to hold the rest of the card contents.
-		container.className = "container";
+    var item = document.createElement("card"); //Create an HTML card element for the product to be displayed with an image.
+    item.className = "card";
 
-		//Create a number element to add in HTML DOM to update product quantities. Number input type learned from https://www.w3schools.com/tags/att_input_type_number.asp.
-		var numberCounter = document.createElement("input");
-		numberCounter.type = "number";
-		numberCounter.name = "quantity";
-		//Users can add 0 - 99 of each product to the shopping cart.
-		numberCounter.min = 0; 
-		numberCounter.max = 99;
-		numberCounter.value = 0; //Product quantity starts at 0.
-		numberCounter.addEventListener("blur", function () { //Add an event listener to the number input. If a user enters a negative number manually, provide an error message.
-			if (this.value < 0) {
-				this.value = 0;
-				alert("Quantity cannot be negative.");
-			}
-		});
+    const container = document.createElement("div"); //Create an HTML container to hold the rest of the card contents.
+    container.className = "container";
 
-		var label = document.createElement('label') //Create a label for the checkbox, and also add in HTML DOM.
-		var productLabel = productName + ": $" + productPrice + " "; //Create the text value for a product's caption.
-		var image = document.createElement("img"); //Create an image HTML element.
-		image.src = productImg //Set the source of the product image to the image's file name.
-		label.appendChild(document.createTextNode(productLabel)); //Product display now shows the product's caption of name and price.
+    //Create a number element to add in HTML DOM to update product quantities. Number input type learned from https://www.w3schools.com/tags/att_input_type_number.asp.
+    var numberCounter = document.createElement("input");
+    numberCounter.type = "number";
+    numberCounter.name = "quantity";
+    //Users can add 0 - 99 of each product to the shopping cart.
+    numberCounter.min = 0;
+    numberCounter.max = 99;
+    numberCounter.value = 0; //Product quantity starts at 0.
+    numberCounter.addEventListener("blur", function () { //Add an event listener to the number input. If a user enters a negative number manually, provide an error message.
+      if (this.value < 0) {
+        this.value = 0;
+        alert("Quantity cannot be negative.");
+      }
+    });
 
-		const button = document.createElement("button"); //Create a button element.
-		button.textContent = "🛒 Add to Cart";
-		button.dataset.index = i; //Add a data attribute to the button to store the index of the product it corresponds to in the displayProducts array.
-		button.onclick = function () {addSingleItem(this);}; //Assign a function to the specific add to cart button.
+    var label = document.createElement('label') //Create a label for the checkbox, and also add in HTML DOM.
+    var productLabel = productName + ": $" + productPrice + " "; //Create the text value for a product's caption.
+    var image = document.createElement("img"); //Create an image HTML element.
+    image.src = productImg //Set the source of the product image to the image's file name.
+    label.appendChild(document.createTextNode(productLabel)); //Product display now shows the product's caption of name and price.
 
-		item.innerHTML += "<br>";
-		item.appendChild(image); //Add the image to the product's display.
-		container.appendChild(label); //Add the caption to the product's display.
-		container.appendChild(numberCounter);
-		container.appendChild(button);
+    const button = document.createElement("button"); //Create a button element.
+    button.textContent = "🛒 Add to Cart";
+    button.dataset.index = i; //Add a data attribute to the button to store the index of the product it corresponds to in the displayProducts array.
+    button.onclick = function () { addSingleItem(this); }; //Assign a function to the specific add to cart button.
 
-		item.appendChild(container);
-		s2.appendChild(item) //Add the product to the product display officially.
-	}
+    item.innerHTML += "<br>";
+    item.appendChild(image); //Add the image to the product's display.
+    container.appendChild(label); //Add the caption to the product's display.
+    container.appendChild(numberCounter);
+    container.appendChild(button);
+
+    item.appendChild(container);
+    s2.appendChild(item) //Add the product to the product display officially.
+  }
 }
 
 /**
@@ -142,59 +142,59 @@ function populateListProductChoices(slct1, slct2) {
  */
 function populateAllProducts(displayElement) {
 
-    var s2 = document.getElementById(displayElement); 
-    s2.innerHTML = "";
+  var s2 = document.getElementById(displayElement);
+  s2.innerHTML = "";
 
-    var optionArray = [...products].sort((a, b) => a.price - b.price);
-	displayProducts = optionArray;
+  var optionArray = [...products].sort((a, b) => a.price - b.price);
+  displayProducts = optionArray;
 
-    for (let i = 0; i < optionArray.length; i++) {
+  for (let i = 0; i < optionArray.length; i++) {
 
-        var productName = optionArray[i].name;
-        var productPrice = optionArray[i].price;
-        var productImg = optionArray[i].imageName;
+    var productName = optionArray[i].name;
+    var productPrice = optionArray[i].price;
+    var productImg = optionArray[i].imageName;
 
-        var item = document.createElement("card");
-        item.className = "card";
+    var item = document.createElement("card");
+    item.className = "card";
 
-        var container = document.createElement("div");
-        container.className = "container";
+    var container = document.createElement("div");
+    container.className = "container";
 
-        var numberCounter = document.createElement("input");
-        numberCounter.type = "number";
-        numberCounter.name = "quantity";
-        numberCounter.min = 0;
-        numberCounter.max = 99;
-        numberCounter.value = 0;
+    var numberCounter = document.createElement("input");
+    numberCounter.type = "number";
+    numberCounter.name = "quantity";
+    numberCounter.min = 0;
+    numberCounter.max = 99;
+    numberCounter.value = 0;
 
-        numberCounter.addEventListener("blur", function () {
-            if (this.value < 0) {
-                this.value = 0;
-                alert("Quantity cannot be negative.");
-            }
-        });
+    numberCounter.addEventListener("blur", function () {
+      if (this.value < 0) {
+        this.value = 0;
+        alert("Quantity cannot be negative.");
+      }
+    });
 
-        var label = document.createElement("label");
-        var productLabel = productName + ": $" + productPrice + " ";
-        label.appendChild(document.createTextNode(productLabel));
+    var label = document.createElement("label");
+    var productLabel = productName + ": $" + productPrice + " ";
+    label.appendChild(document.createTextNode(productLabel));
 
-        var image = document.createElement("img");
-        image.src = productImg;
+    var image = document.createElement("img");
+    image.src = productImg;
 
-        var button = document.createElement("button");
-        button.textContent = "🛒 Add to Cart";
-		button.dataset.index = i; //Add a data attribute to the button to store the index of the product it corresponds to in the displayProducts array.
-        button.onclick = function () { addSingleItem(this); };
+    var button = document.createElement("button");
+    button.textContent = "🛒 Add to Cart";
+    button.dataset.index = i; //Add a data attribute to the button to store the index of the product it corresponds to in the displayProducts array.
+    button.onclick = function () { addSingleItem(this); };
 
-        item.innerHTML += "<br>";
-        item.appendChild(image);
-        container.appendChild(label);
-        container.appendChild(numberCounter);
-        container.appendChild(button);
+    item.innerHTML += "<br>";
+    item.appendChild(image);
+    container.appendChild(label);
+    container.appendChild(numberCounter);
+    container.appendChild(button);
 
-        item.appendChild(container);
-        s2.appendChild(item);
-    }
+    item.appendChild(container);
+    s2.appendChild(item);
+  }
 }
 
 // Add one single new product to cart
@@ -268,7 +268,7 @@ function renderCart() {
     const row = document.createElement("div");
     row.className = "cart-row";
 
-	// Display product information and buttons
+    // Display product information and buttons
     row.innerHTML = `
       <div class="cart-info">
         <div class="cart-name">${name}</div>
@@ -309,9 +309,9 @@ document.addEventListener("click", (e) => {
   const name = btn.dataset.name;
   if (!action || !name) return; // not cart buttons
 
-  if (action === "add") {changeCartQty(name, +1);}
-  if (action === "sub") {changeCartQty(name, -1);}
-  if (action === "remove") {setCartQty(name, 0);}
+  if (action === "add") { changeCartQty(name, +1); }
+  if (action === "sub") { changeCartQty(name, -1); }
+  if (action === "remove") { setCartQty(name, 0); }
 });
 
 
@@ -322,26 +322,26 @@ document.addEventListener("click", (e) => {
  * @param category The category to be displayed.
  */
 function productCategoryFilter(category) {
-    const productCards = document.querySelectorAll("#displayProduct .card"); //Get all card HTML elements from the product display element.
-	var existingProducts = 0;
-    productCards.forEach(card => { //Loop through each card in the product display element.
-        const productName = card.querySelector("label").textContent.split(":")[0].trim(); //Extract the product name from the label.
-        const product = products.find(p => p.name === productName); //Search the products list and return the product object that matches the name of the current card element.
+  const productCards = document.querySelectorAll("#displayProduct .card"); //Get all card HTML elements from the product display element.
+  var existingProducts = 0;
+  productCards.forEach(card => { //Loop through each card in the product display element.
+    const productName = card.querySelector("label").textContent.split(":")[0].trim(); //Extract the product name from the label.
+    const product = products.find(p => p.name === productName); //Search the products list and return the product object that matches the name of the current card element.
 
-        if (!product){ //If the product does not exist in the store, exit this function.
-			return;
-		} 
-
-        if (category === "All" || product.storeCategory === category) { //If the product's category was the one selected, or it is the 'All' category, keep it displayed.
-            card.style.display = "block";   
-			existingProducts++; //Add one to existingProducts variable.
-        } else { //Otherwise, set the display to be hidden.
-            card.style.display = "none";   
-        }
-    });
-	if (existingProducts === 0) { //If no products are displayed, alert the user.
-        alert("No products exist for this category.");
+    if (!product) { //If the product does not exist in the store, exit this function.
+      return;
     }
+
+    if (category === "All" || product.storeCategory === category) { //If the product's category was the one selected, or it is the 'All' category, keep it displayed.
+      card.style.display = "block";
+      existingProducts++; //Add one to existingProducts variable.
+    } else { //Otherwise, set the display to be hidden.
+      card.style.display = "none";
+    }
+  });
+  if (existingProducts === 0) { //If no products are displayed, alert the user.
+    alert("No products exist for this category.");
+  }
 }
 
 //Variables for the slide and size values.
@@ -350,15 +350,15 @@ const size = document.getElementById("fontSizeValue");
 
 //Slide function to change the size of the site when the slide is moved.
 slider.oninput = function () {
-	document.body.style.fontSize = this.value + "px";
-	size.textContent = this.value + "px";
+  document.body.style.fontSize = this.value + "px";
+  size.textContent = this.value + "px";
 };
 
 //Functions to run after the HTML page is fully done loading.
 window.addEventListener("load", () => {
-    const accountButton = document.querySelector("button.tablinks[onclick*='Client']"); //Get the tab button that would normally open the account tab.
-    openInfo({ currentTarget: accountButton }, "Client"); //Call openInfo with the usual parameters except the button replaces the event parameter.
-	populateAllProducts("displayProduct"); //Loads all products into the products tab.
+  const accountLink = document.querySelector("a[onclick*=\"Client\"]"); //Get the dropdown menu element that would open the account tab.
+  openInfo({ currentTarget: accountLink }, "Client"); //Call openInfo with the usual parameters except the button replaces the event parameter.
+  populateAllProducts("displayProduct"); //Loads all products into the products tab.
 });
 
 /**
@@ -369,10 +369,10 @@ let user_name;
 
 function saveName() {
   user_name = document.getElementById("name").value;
-  
+
   const output = document.getElementsByClassName("displayName");
 
-  // Change the text content of all elements with the class "displayName" to the user's name
+  //Change the text content of all elements with the class "displayName" to the user's name.
   for (let i = 0; i < output.length; i++) {
     output[i].textContent = user_name;
   }

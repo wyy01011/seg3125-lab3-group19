@@ -12,28 +12,30 @@
 <body>
 
   <div class="topheader">
-    <h1>Velvet Market 🍰</h1> <!--Grocery store name.-->
-    <form class="header-search"> <!--Form element to hold the search field and button.-->
+
+    <div class="header-left">
+      <div class="dropdown">
+        <button class="dropbtn" id="navDropBtn">Navigate</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="openTabFromDropdown('Client'); return false;">Account</a>
+          <a href="#" onclick="openTabFromDropdown('Products'); return false;">Products</a>
+          <a href="#" onclick="openTabFromDropdown('Cart'); return false;">Cart</a>
+        </div>
+      </div>
+    </div>
+
+    <h1>Velvet Market 🍰</h1>
+
+    <form class="header-search">
       <input type="text" placeholder="Search..." />
       <button type="submit"><i class="fa fa-search"></i></button>
-      <!--Create a button element using the class from W3Schools to load in the icon.-->
     </form>
 
   </div>
 
-  <!--Tab links. When clicked on, show a new page of the store to the user.-->
-  <div class="dropdown">
-    <button class="dropbtn" id="navDropBtn">Navigate</button>
-    <div class="dropdown-content">
-      <a href="#" onclick="openTabFromDropdown('Client'); return flase;">Account</a>
-      <a href="#" onclick="openTabFromDropdown('Products'); return flase;">Products</a>
-      <a href="#" onclick="openTabFromDropdown('Cart'); return flase;">Cart</a>
-    </div>
-  </div>
-
   <div id="feedback" class="feedback" aria-live="polite"></div>
 
-  <!--Tab content.-->
+  <!--Different nevigation pages.-->
 
   <!--Tab for the client to select their shopping preferences.-->
   <div id="Client" class="tabcontent">
@@ -146,8 +148,9 @@
   <div id="Cart" class="tabcontent">
     <h3>Cart</h3>
     <p>Thank you for shopping with us, <span class="displayName"></span>!</p>
-    <p>Your shopping cart items.</p>
-    <p>If no products are listed, return to the "Products" tab to add products to your cart.</p>
+    <p>Your shopping cart items will be listed below. Add or remove more products to your liking.<br>
+      If no products are listed, return to the "Products" tab to add products to your cart.
+    </p>
     <div id="displayCart"></div>
   </div>
 
